@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Trip(models.Model):
-    class Transporation(models.TextChoices):
+    class Transportation(models.TextChoices):
         PLANE = ('PLANE','Plane')
         CAR = ('CAR', 'Car')
         TRAIN = ('TRAIN', 'Train')
@@ -14,5 +14,5 @@ class Trip(models.Model):
         AIRBNB = ('AIRBNB', 'Airbnb')
         CAMPING = ('CAMPING', 'Camping')
     destination = models.TextField()
-    transporation = models.TextField(choices = Transporation.choices)
+    transportation = models.TextField(choices = Transportation.choices)
     stay = models.TextField(choices = Stay.choices)

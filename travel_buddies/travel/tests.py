@@ -9,10 +9,10 @@ logger = logging.getLogger(__name__)
 
 class TravelSerlizerCase(TestCase):
     def test_valid_serializer(self):
-        serializer = TripSerializer(data={'destination':'Hawaii','transporation':'PLANE', 'stay':'HOTEL', 'foo':'bar'})
+        serializer = TripSerializer(data={'destination':'Hawaii','transportation':'PLANE', 'stay':'HOTEL', 'foo':'bar'})
         logger.error(repr(serializer))
         assert serializer.is_valid()
         # only cares about the three fields: destination, transportation, stay
-        assert serializer.validated_data == {'destination':'Hawaii','transporation':'PLANE', 'stay':'HOTEL'}
-        assert serializer.data == {'destination':'Hawaii','transporation':'PLANE', 'stay':'HOTEL'}
+        assert serializer.validated_data == {'destination':'Hawaii','transportation':'PLANE', 'stay':'HOTEL'}
+        assert serializer.data == {'destination':'Hawaii','transportation':'PLANE', 'stay':'HOTEL'}
         assert serializer.errors == {}
