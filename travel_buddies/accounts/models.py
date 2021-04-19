@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, primary_key = True, on_delete=models.CASCADE)
     address1 = models.TextField("Address 1", null=True, blank=True)
     address2 = models.TextField("Address 2", null=True, blank=True)
     zipcode  = models.IntegerField("Zipcode", null=True, blank=True)

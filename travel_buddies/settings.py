@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'travel_buddies.travel'
-
+    'travel_buddies.accounts'
 ]
 
 MIDDLEWARE = [
