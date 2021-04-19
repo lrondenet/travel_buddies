@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Trip
+from travel_buddies.travel.models import Trip
 
 class TripSerializer(serializers.ModelSerializer):
     class Meta:
