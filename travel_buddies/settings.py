@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'travel_buddies.travel',
     'travel_buddies.accounts',
     'travel_buddies.suggestions'
-
-]
+  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
