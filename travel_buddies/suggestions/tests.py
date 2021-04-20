@@ -5,6 +5,7 @@ from travel_buddies.travel.models import Trip
 from travel_buddies.suggestions.serializers import SuggestionsSerializer
 import logging
 from datetime import datetime
+
 logger = logging.getLogger(__name__)
 
 class SuggestionsSerializerCase(TestCase):
