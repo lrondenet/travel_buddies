@@ -1,3 +1,19 @@
-from django.shortcuts import render
+from travel_buddies.travel.models import Trip
+from travel_buddies.travel.serializers import TripSerializer
+from rest_framework import generics
 
-# Create your views here.
+
+
+class TripList(generics.ListCreateAPIView):
+    queryset = Trip.objects.all()
+    serializer_class = TripSerializer
+
+
+class TripDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Trip.objects.all()
+    serializer_class = TripSerializer
+
+
+
+
+    
