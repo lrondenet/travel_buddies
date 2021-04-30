@@ -12,5 +12,5 @@ class UserProfile(models.Model):
     phone = models.TextField("Phone", null=True, blank=True)
 
     def __str__(self):
-        return self.user.first_name
+        return str(self.user_id)
         
