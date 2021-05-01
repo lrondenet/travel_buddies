@@ -9,6 +9,8 @@ class UserSerializer(serializers.ModelSerializer):
     user_permissions = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     groups = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
+    # def update(self, instance, validated_data):
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'user_permissions', 'groups', 'password']
@@ -35,8 +37,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return user_profile
     
     def update(self, instance, validated_data):
-        print(repr(instance))
-        print(repr(self.validated_data))
         instance.address1 = validated_data.get('address1', instance.address1)
         instance.address2 = validated_data.get('address2', instance.address2)
         instance.zipcode = validated_data.get('zipcode', instance.zipcode)
@@ -44,6 +44,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
         instance.country = validated_data.get('country', instance.country)
         instance.phone = validated_data.get('phone', instance.phone)
         instance.save()
+
+        user_data = validated_data.pop('user')
+        user = instance.user
+        user.first_name = user_data.get('first_name', user.first_name)
+        user.last_name = user_data.get('last_name', user.last_name)
+        user.email = user_data.get('email', user.email)
+        user.save()
         return instance
 
     class Meta:
