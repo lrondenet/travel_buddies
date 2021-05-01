@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'user_permissions', 'groups', 'password']
-        read_only_fields = ['last_login', 'is_superuser', 'user_permissions', 'groups', 'is_staff', 'is_active']
+        read_only_fields = ['last_login', 'is_superuser', 'user_permissions', 'groups', 'is_staff', 'is_active', 'username']
         extra_kwargs = {'password': {'write_only': True}}
 
 
@@ -21,6 +21,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
     suggestions = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     trips = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
+    # Todo;
+    # Put create function into view 
+    # rename to perform_create(self, serializer)
+    
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         user = User.objects.create_user(**user_data)
@@ -29,6 +33,18 @@ class UserProfileSerializer(serializers.ModelSerializer):
         trips_data = validated_data.pop('trips')
         user_profile = UserProfile.objects.create(user=user, **validated_data)
         return user_profile
+    
+    def update(self, instance, validated_data):
+        print(repr(instance))
+        print(repr(self.validated_data))
+        instance.address1 = validated_data.get('address1', instance.address1)
+        instance.address2 = validated_data.get('address2', instance.address2)
+        instance.zipcode = validated_data.get('zipcode', instance.zipcode)
+        instance.city = validated_data.get('city', instance.city)
+        instance.country = validated_data.get('country', instance.country)
+        instance.phone = validated_data.get('phone', instance.phone)
+        instance.save()
+        return instance
 
     class Meta:
         model = UserProfile
