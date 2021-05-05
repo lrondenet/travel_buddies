@@ -9,5 +9,11 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         # Write permissions are only allowed to the user of the sugesstions.
-        # return obj.owner == request.user
         return obj.user == request.user
+
+
+class IsOwnerNotEditableOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'PUT':
+            return False
+        return True
