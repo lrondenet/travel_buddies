@@ -7,6 +7,15 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        # Write permissions are only allowed to the user of the sugesstions.
+        # Write permissions are only allowed to the user .
         # return obj.owner == request.user
         return obj.user == request.user
+
+
+class IsSuperUserOrReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return request.user.is_superuser
+
+
