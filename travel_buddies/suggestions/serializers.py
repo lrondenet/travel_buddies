@@ -17,6 +17,6 @@ class SuggestionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Suggestions
-        fields = ['user', 'trip_plan', 'start_date', 'end_date', 'vote']
+        fields = ['user', 'trip_plan', 'start_date', 'end_date', 'vote', 'id']
 
     

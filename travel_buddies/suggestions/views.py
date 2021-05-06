@@ -2,7 +2,7 @@ from travel_buddies.suggestions.models import Suggestions
 from travel_buddies.suggestions.serializers import SuggestionsSerializer
 from rest_framework import generics
 from rest_framework import permissions
-from travel_buddies.suggestions.permissions import IsOwnerOrReadOnly
+from travel_buddies.suggestions.permissions import IsOwnerOrReadOnly, NotEditableAndReadOnly
 from travel_buddies.accounts.models import UserProfile
 
 
@@ -19,6 +19,6 @@ class SuggestionsList(generics.ListCreateAPIView):
 class SuggestionsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Suggestions.objects.all()
     serializer_class = SuggestionsSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly, NotEditableAndReadOnly]
 
 
