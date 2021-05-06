@@ -45,6 +45,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         user.first_name = user_data.get('first_name', user.first_name)
         user.last_name = user_data.get('last_name', user.last_name)
         user.email = user_data.get('email', user.email)
+        user.set_password(user_data['password'])
         user.save()
         instance.save()
         return instance
