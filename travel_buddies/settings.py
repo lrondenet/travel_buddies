@@ -40,13 +40,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'travel_buddies.travel',
     'travel_buddies.accounts',
-    'travel_buddies.suggestions'
+    'travel_buddies.suggestions',
+    'corsheaders',
 ]
   
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -126,3 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+CORS_ORIGIN_ALLOW_ALL = True
