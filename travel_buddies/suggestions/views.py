@@ -27,7 +27,9 @@ class VoteList(generics.ListCreateAPIView):
     permissions_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
+        print(self.request.user)
         serializer.save(user_id=self.request.user.id)
+
 
 
 class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
