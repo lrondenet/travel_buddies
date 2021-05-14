@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Alert from '@material-ui/lab/Alert';
 
+
 const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -30,6 +31,7 @@ const styles = (theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 });
+
 
 class Signup extends React.Component {
   state = {
