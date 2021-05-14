@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'travel_buddies.accounts',
     'travel_buddies.suggestions',
     'corsheaders',
+    'rest_framework.authtoken'
 ]
   
 
@@ -131,5 +132,16 @@ STATIC_URL = '/static/'
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://locahost:3000"
+    "http://localhost:3000"
 ]
+
+REST_FRAMEWORK = {
+    # DEFAULT_PERMISSION_CLASSES: [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
