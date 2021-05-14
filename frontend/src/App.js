@@ -2,7 +2,6 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 
-
 import Home from './containers/Home';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
@@ -20,9 +19,5 @@ const App = () => (
         </Switch>
     </Router>
 );
+
 export default App;
-
-
-
-
-

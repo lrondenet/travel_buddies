@@ -1,49 +1,36 @@
 import React, { useState, useEffect } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const [isLoggedIn, setLoggedIn] = useState(false)
-  // Add your own authentication on the below line.
-  
-  //   const isLoggedIn = token !== null;
+  const history = useHistory();
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    console.log('LAUREN')
-    let mounted = true
-    fetch('http://localhost:8000/trips/', {
+    async function validateToken() {
+      const token = localStorage.getItem('token')
+      const response = await fetch('http://localhost:8000/trips/', { 
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Token ' + token,
-      },
-    }).then((resp) => {
-      console.log(isLoggedIn)
-      console.log(resp)
-      console.log(mounted)
-      if (resp.ok) {
-        if (mounted) {
-          setLoggedIn(true)
-          console.log('setting state', isLoggedIn)
-        }
+        'Authorization': 'Token ' + token,
       }
-    })
-    // return () => {
-    //   mounted = false
-    // }
-  }, [isLoggedIn])
+      });
+      if (response.ok) {
+        setLoggedIn(true);
+        return
+      }
+      history.push('/login')
+    }
+    validateToken();
+  }, [isLoggedIn, history]);
+
+
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        isLoggedIn ? (
           <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
-        )
       }
     />
   )
