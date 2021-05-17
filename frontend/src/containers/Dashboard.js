@@ -4,25 +4,23 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
-// import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-// import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper';
 // import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 // import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems} from './ListItems';
+// import {mainListItems} from './ListItems';
+import ListItems from './ListItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
-// import Orders from './Orders';
+import Trips from './Trips';
 
 const drawerWidth = 240;
 
@@ -115,27 +113,27 @@ class Dashboard extends React.Component {
     }
 
     handleDrawerOpen = () => {
-        this.setState({ setOpen: this.state.setOpen })
+      this.setState({ setOpen: this.state.open})
     }
     
     handleDrawerClose = () => {
-        this.setState({ setOpen: !this.state.setOpen })
-            // setOpen(false);
-        }
+      this.setState({ setOpen: !this.state.setOpen })
+    }
+
     render() {
         const { classes } = this.props
-        const { open } = this.state
+        const { setOpen } = this.state
         return (
             <div className={classes.root}>
                 <CssBaseline />
-                <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+                <AppBar position="absolute" className={clsx(classes.appBar, setOpen && classes.appBarShift)}>
                     <Toolbar className={classes.toolbar}>
                         <IconButton
                             edge="start"
                             color="inherit"
                             aria-label="open drawer"
                             onClick={this.handleDrawerOpen}
-                            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                            className={clsx(classes.menuButton, setOpen && classes.menuButtonHidden)}
                         >
                         <MenuIcon />
                         </IconButton>
@@ -150,17 +148,17 @@ class Dashboard extends React.Component {
                 <Drawer
                     variant="permanent"
                     classes={{
-                        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                        paper: clsx(classes.drawerPaper, !setOpen && classes.drawerPaperClose),
                     }}
-                    open={open}
                 >
                 <div className={classes.toolbarIcon}>
                     <IconButton onClick={this.handleDrawerClose}>
                     <ChevronLeftIcon />
                     </IconButton>
                 </div>
-                <Divider />
-                <List>{mainListItems}</List>
+                <Divider />   
+                    <ListItems/>
+                  {/* <List>{mainListItems}</List> */}
                 <Divider/>
                 </Drawer>
                 <main className={classes.content}>
@@ -168,13 +166,20 @@ class Dashboard extends React.Component {
                     <Container maxWidth="lg" className={classes.container}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={8} lg={9}>
+                              <Grid item xs={12}>
+                                <Paper className={classes.paper}>
+                                  {/* Display Trips Here */}
+                                  <Trips/>
+                                </Paper>
+                              </Grid>
                             </Grid>
                         </Grid>
                     </Container>
                 </main>
             </div>
-
         );
     }
 }
 export default withStyles(styles)(Dashboard)
+
+

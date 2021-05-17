@@ -9,39 +9,60 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 // import AssignmentIcon from '@material-ui/icons/Assignment';
 import PersonIcon from '@material-ui/icons/Person';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
+import { useHistory } from 'react-router-dom'
 // import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 
-export const mainListItems = (
-    <div>
-      <ListItem button>
+
+
+
+// export const mainListItems = (
+//     <div>
+//       <ListItem button>
+//         <ListItemIcon>
+//           <DashboardIcon />
+//         </ListItemIcon>
+//         <ListItemText primary="Dashboard" />
+//       </ListItem>
+//       <ListItem button>
+//         <ListItemIcon>
+//           <PersonIcon />
+//         </ListItemIcon>
+//         <ListItemText primary="Profile" />
+//       </ListItem>
+//       <ListItem button>
+//         <ListItemIcon>
+//           <CardTravelIcon />
+//         </ListItemIcon>
+//         <ListItemText primary="Trips" />
+//       </ListItem>
+//     </div>
+//   );
+
+
+export default function ListItems() {
+  const history = useHistory();
+  return (
+    <React.Fragment>
+      <div>
+        <ListItem button onClick={() => history.push('/dashboard')}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
-      </ListItem>
-      <ListItem button>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+            <ListItemText primary="Profile" />
+            </ListItem>
+        <ListItem button>
         <ListItemIcon>
-          <PersonIcon />
-        </ListItemIcon>
-        <ListItemText primary="Profile" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <CardTravelIcon />
-        </ListItemIcon>
-        <ListItemText primary="Trips" />
-      </ListItem>
-      {/* <ListItem button>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Suggestions" />
-      </ListItem> */}
-      {/* <ListItem button>
-        <ListItemIcon>
-          <LayersIcon />
-        </ListItemIcon>
-        <ListItemText primary="Integrations" />
-      </ListItem> */}
-    </div>
-  );
+          <CardTravelIcon/>
+          </ListItemIcon>
+          <ListItemText primary="Trips" />
+        </ListItem>
+      </div>
+    </React.Fragment>
+  )
+}

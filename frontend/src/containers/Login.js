@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Alert from '@material-ui/lab/Alert';
+import  { Redirect } from 'react-router-dom'
 
 
 
@@ -71,7 +72,6 @@ class Login extends React.Component {
       }
       response.json()
       .then(data => {
-        console.log(data)
         localStorage.setItem('token', data.token);
         localStorage.setItem('user_id', data.user_id);
         localStorage.setItem('email', data.email);
@@ -110,9 +110,14 @@ class Login extends React.Component {
             <div></div>
           )}
           {this.state.isSuccess ? (
-            <Alert severity="success">
-              You signed in!
-            </Alert>
+            <React.Fragment>
+              <Alert severity="success">
+                You signed in!
+              </Alert>
+              <Redirect to='/dashboard'>
+
+              </Redirect>
+            </React.Fragment>
           ) : (
             <div></div>
           )}
