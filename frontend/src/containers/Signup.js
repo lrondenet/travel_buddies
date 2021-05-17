@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Alert from '@material-ui/lab/Alert';
+import { withRouter } from 'react-router-dom'
+
 
 const styles = (theme) => ({
   paper: {
@@ -50,6 +52,7 @@ class Signup extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { history } = this.props
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -84,6 +87,7 @@ class Signup extends React.Component {
         this.setState({
           isSuccess: true
         })
+        history.push('/login')
       }
       response.json()
     })
@@ -288,4 +292,4 @@ class Signup extends React.Component {
     )
   }
 }
-export default withStyles(styles)(Signup)
+export default withRouter(withStyles(styles)(Signup))

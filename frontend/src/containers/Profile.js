@@ -32,11 +32,13 @@ const styles = (theme) => ({
 
 class Profile extends React.Component {
     state = {
-        users: [],
+        profile: {},
     }
 
     componentDidMount() {
         const user_id = localStorage.getItem('user_id')
+        console.log('profile component')
+        console.log(user_id)
         fetch('http://localhost:8000/users/' + user_id)
         .then(response => {
             if (!response.ok) {
@@ -45,18 +47,24 @@ class Profile extends React.Component {
             return response.json();
         })
         .then(data => {
-            this.setState({ users: [data]})
+            this.setState({ profile: data})
             console.log(data)
         })
     }
     render () {
         const { classes } = this.props
+        const { profile } = this.state
         return (
             <React.Fragment>
                 <div>
-                    {this.state.users.map((user, index) => (
-                        <div key={index}>{user.username}</div>
-                    ))}
+                    <h1>Profile</h1>
+                    <p></p>
+                    {/* {this.state.users.map(function(user,index)  {
+                        return <h1>{user.address1}</h1>
+
+                    })} */}
+                    {/* <div key={index}>{user.username}</div> */}
+                    
                 </div>
             </React.Fragment>
             // <Container component="main" maxWidth="xs">
