@@ -19,8 +19,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
+import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import Trips from './Trips'
 import Profile from './Profile'
+import CreateTrip from './CreateTrip'
 import { withRouter } from 'react-router-dom'
 
 const drawerWidth = 240
@@ -132,7 +134,7 @@ class Dashboard extends React.Component {
     event.preventDefault()
     // console.log(event)
     const id = event.target.innerHTML
-    console.log('ListItem clicked!', id)
+    // console.log('ListItem clicked!', id)
     this.setState({currentPage: id.toLowerCase()})
   }
 
@@ -140,11 +142,14 @@ class Dashboard extends React.Component {
     const { classes } = this.props
     const { setOpen, currentPage } = this.state
     let pageItem;
-    if (currentPage == 'profile') {
+    if (currentPage === 'profile') {
       pageItem = <Profile />
     }
-    else if (currentPage == 'trips') {
+    else if (currentPage === 'trips') {
       pageItem = <Trips />
+    }
+    else if (currentPage === 'create trip') {
+      pageItem = <CreateTrip />
     }
     else {
       pageItem = <Profile />
@@ -211,6 +216,12 @@ class Dashboard extends React.Component {
               </ListItemIcon>
               <ListItemText primary="Trips" onClick={this.handleListItemClick} id="Trips"/>
             </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <AirplanemodeActiveIcon />
+              </ListItemIcon>
+              <ListItemText primary="Create Trip" onClick={this.handleListItemClick} id="Create Trip"/>
+            </ListItem>
           </div>
           <Divider />
         </Drawer>
@@ -227,13 +238,6 @@ class Dashboard extends React.Component {
                   </Paper>
                 </Grid>
               </Grid>
-              {/* <Grid item xs={12} md={8} lg={9}>
-                <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <Profile />
-                  </Paper>
-                </Grid>
-              </Grid> */}
             </Grid>
           </Container>
         </main>

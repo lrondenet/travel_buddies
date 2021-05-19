@@ -9,8 +9,7 @@ import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './PrivateRoute';
 import Trips from './containers/Trips';
-import CreateTrips from './containers/CreateTrips';
-import Profile from './containers/Profile';
+
 
 const App = () => (
     <Router>
@@ -19,8 +18,6 @@ const App = () => (
             <Route exact path='/login' component={Login} />
             <Route exact path='/trips' component={Trips} />
             <Route exact path='/' component={Home} />
-            <Route exact path='/create_trips' component={CreateTrips} />
-            <Route exact path='/profile' component={Profile} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
     </Router>
