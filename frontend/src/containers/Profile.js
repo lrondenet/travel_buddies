@@ -92,7 +92,7 @@ class Profile extends React.Component {
     if (name === 'password') {
       profile.user.password = value
     }
-    console.log(profile)
+    // console.log(profile)
     this.setState({
       profile: profile
     })
@@ -105,8 +105,8 @@ class Profile extends React.Component {
     const user_id = localStorage.getItem('user_id')
     const token = localStorage.getItem('token')
     event.preventDefault()
-    console.log(this.state.profile.user.password)
-    console.log(this.state.profile.user.password === '')
+    // console.log(this.state.profile.user.password)
+    // console.log(this.state.profile.user.password === '')
     if (this.state.profile.user.password === undefined) {
         this.setState({
           errorMessage: 'password is required!'
@@ -162,9 +162,9 @@ class Profile extends React.Component {
                   <Alert severity="error">
                   {this.state.errorMessage}
                   </Alert>
-                ) : (
+                  ) : (
                   <div></div>
-              )}
+                )}
                 <form
                 className={classes.form}
                 noValidate

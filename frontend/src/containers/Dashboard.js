@@ -47,6 +47,7 @@ const styles = (theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: '#386575',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -103,12 +104,15 @@ const styles = (theme) => ({
   },
   fixedHeight: {
     height: 240,
+  }, 
+  Button3: {
+    backgroundColor: '#2cb4a9'
   },
 })
 
 class Dashboard extends React.Component {
   state = {
-    setOpen: true,
+    setOpen: false,
     open: true,
     currentPage: 'trips',
   }
@@ -183,7 +187,7 @@ class Dashboard extends React.Component {
             >
               Dashboard
             </Typography>
-            <Button variant="contained" onClick={this.handleLogout}>
+            <Button color="inherit" className={classes.Button3} onClick={this.handleLogout}>
               Logout
             </Button>
           </Toolbar>
@@ -232,8 +236,7 @@ class Dashboard extends React.Component {
               <Grid item xs={12} md={8} lg={9}>
                 <Grid item xs={12}>
                   <Paper className={classes.paper}>
-                    {/* Display Trips Here */}
-                    {/* <Trips /> */}
+                    {/* Display Items Here */}
                     {pageItem}
                   </Paper>
                 </Grid>
