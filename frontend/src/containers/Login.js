@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Alert from '@material-ui/lab/Alert';
+import  { Redirect, withRouter } from 'react-router-dom'
 
 
 
@@ -70,12 +71,11 @@ class Login extends React.Component {
         })
       }
       response.json()
-      .then(data => {
-        console.log(data)
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user_id', data.user_id);
-        localStorage.setItem('email', data.email);
-      })
+        .then(data => {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user_id', data.user_id);
+          localStorage.setItem('email', data.email);
+        })
     })
   }
   
@@ -87,6 +87,33 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     })
+  }
+
+  componentDidMount() {
+      const { history } = this.props
+      async function validateToken() {
+        const token = localStorage.getItem('token') 
+        const response = await fetch('http://localhost:8000/trips/', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Token ' + token,
+            },
+        });
+        if (response.ok) {
+          console.log('token is good')
+          history.push('/dashboard')
+          return
+          // setLoggedIn(true);
+          // return
+        }
+        console.log('token is bad')
+        history.push('/login')
+    }
+    validateToken()
+    console.log('component mounted!')
+    const token = localStorage.getItem('token')
+    console.log(token)
   }
 
 
@@ -110,9 +137,14 @@ class Login extends React.Component {
             <div></div>
           )}
           {this.state.isSuccess ? (
-            <Alert severity="success">
-              You signed in!
-            </Alert>
+            <React.Fragment>
+              <Alert severity="success">
+                You signed in!
+              </Alert>
+              <Redirect to='/dashboard'>
+
+              </Redirect>
+            </React.Fragment>
           ) : (
             <div></div>
           )}
@@ -167,6 +199,6 @@ class Login extends React.Component {
     )
   }
 }
-export default withStyles(styles)(Login)
+export default withRouter(withStyles(styles)(Login))
 
 

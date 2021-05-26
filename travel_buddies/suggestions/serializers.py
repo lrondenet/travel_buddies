@@ -20,8 +20,6 @@ class SuggestionsSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("end_date must be greater than start_date")
         return data
 
-    # Todo
-    # make start_date not putable or always equal
 
     class Meta:
         model = Suggestions
