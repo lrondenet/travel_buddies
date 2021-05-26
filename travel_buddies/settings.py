@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'travel_buddies.accounts',
     'travel_buddies.suggestions',
     'corsheaders',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_filters'
 ]
   
 

@@ -4,12 +4,15 @@ from rest_framework import generics
 from rest_framework import permissions
 from travel_buddies.suggestions.permissions import IsOwnerOrReadOnly, NotEditableAndReadOnly
 from travel_buddies.accounts.models import UserProfile
+import django_filters.rest_framework
 
 
 class SuggestionsList(generics.ListCreateAPIView):
     queryset = Suggestions.objects.all()
     serializer_class = SuggestionsSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['id', 'trip_plan']
 
     def perform_create(self, serializer):
         serializer.save(user_id=self.request.user.id)
