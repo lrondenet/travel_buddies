@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 
 import Home from './containers/Home';
-import Signup from './containers/Signup';
+import Signup from './containers/SignUp';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './PrivateRoute';
